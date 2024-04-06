@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horizontal Slider</title>
+  <style>
+    .half-screen-width {
+      width: 50%;
+      margin: auto;
+    }
+
+    .slider-container {
+      width: 90%;
+      margin: 50px auto;
+      position: relative;
+    }
+
+    .slider {
+      width: 100%;
+      height: 20px;
+      background-color: #f0f0f0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .slider-thumb {
+      width: 20px;
+      height: 20px;
+      background-color: #007bff;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .notch {
+      position: absolute;
+      height: 10px;
+      width: 1px;
+      background-color: black;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .notch-label {
+      position: absolute;
+      top: -20px;
+      transform: translateX(-50%);
+      font-size: 12px;
+    }
+
+    .submit-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 10px;
+      position: absolute;
+      bottom: -60px;/ Adjust this value for the desired placement / left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .selected-label {
+      font-size: 16px;
+      display: inline-block;
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="half-screen-width">
+    <div class="slider-container">
+      <div class="slider" id="slider">
+        <div class="slider-thumb" id="sliderThumb"></div>
+        <div class="notches"></div>
+      </div>
+      <div class="notch-labels"></div>
+      <button class="submit-button" id="submitButton" style="display: none;">Submit</button>
+    </div>
+  </div>
+
+  <script>
+    const slider = document.getElementById('slider');
+    const sliderThumb = document.getElementById('sliderThumb');
+    const notchesContainer = document.querySelector('.notches');
+    const notchLabelsContainer = document.querySelector('.notch-labels');
+    const submitButton = document.getElementById('submitButton');
+
+    const startValue = 300;
+    const endValue = 400;
+    const step = 5;
+    const totalNotches = (endValue - startValue) / step;
+    const notchWidth = slider.offsetWidth / totalNotches;
+
+    // Create notches and labels
+    for (let i = 0; i <= totalNotches; i++) {
+      const notch = document.createElement('div');
+      notch.classList.add('notch');
+      notch.style.left = i * notchWidth + 'px';
+      notchesContainer.appendChild(notch);
+
+      const label = document.createElement('div');
+      label.classList.add('notch-label');
+      label.style.left = i * notchWidth + 'px';
+      label.textContent = startValue + i * step;
+      notchLabelsContainer.appendChild(label);
+    }
+
+    // Function to snap slider to nearest notch
+    function snapToNearestNotch() {
+      const sliderPos = sliderThumb.getBoundingClientRect().left - slider.getBoundingClientRect().left;
+      const nearestNotch = Math.round(sliderPos / notchWidth);
+      const nearestNotchPos = nearestNotch * notchWidth;
+      sliderThumb.style.left = nearestNotchPos + 'px';
+
+      // Show submit button
+      submitButton.style.display = 'inline-block';
+
+      // Remove selected label class from other labels
+      const allNotchLabels = document.querySelectorAll('.notch-label');
+      allNotchLabels.forEach(label => {
+        label.classList.remove('selected-label');
+      });
+
+      // Highlight selected label
+      const selectedNotchLabel = document.querySelector('.notch-label:nth-child(' + (nearestNotch + 1) + ')');
+      selectedNotchLabel.classList.add('selected-label');
+
+      // Center submit button
+      submitButton.style.left = '50%';
+    }
+
+    function handleDrag(e) {
+      let posX = e.clientX - slider.getBoundingClientRect().left;
+
+      if (posX < 0) {
+        posX = 0;
+      } else if (posX > slider.offsetWidth - sliderThumb.offsetWidth) {
+        posX = slider.offsetWidth - sliderThumb.offsetWidth;
+      }
+
+      sliderThumb.style.left = posX + 'px';
+    }
+
+    sliderThumb.addEventListener('mousedown', () => {
+      document.addEventListener('mousemove', handleDrag);
+    });
+
+    document.addEventListener('mouseup', () => {
+      document.removeEventListener('mousemove', handleDrag);
+      snapToNearestNotch();
+    });
+  </script>
+
+</body>
+
+</html>

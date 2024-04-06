@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Price of a Book</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic&display=swap"
+    rel="stylesheet" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/0.2.0/modern-normalize.min.css" />
+  <link rel="stylesheet" href="css/the-price-of-a-book.css">
+  <link rel="stylesheet" href="css/card.css">
+</head>
+
+<body ondrop="drop(event)" ondragover="allowDrop(event)">
+  <li class="card__item list">
+    <div class="card__item-wrap">
+      <p class="card__item-text">The Price of a Book</p>
+
+      <div class="card-img-wrapper">
+        <div class="img-container">
+          <img class="card__item-img"
+            src="https://www.unipuzzle.com/puzzlebase/images-puzzle-classics/173_eMKB8iVZ.svg">
+          <p class="card-text">A book costs $1 plus half its price. How much does it cost?</p>
+        </div>
+
+      </div>
+      <div class="card__button-group">
+        <div class="ai-container">
+          <div class="dollar">$</div>
+          <div class="drop-zone" ondragover="allowDrop(event)" data-number=""></div>
+          <div class="separator"></div>
+          <div class="drop-zone" ondragover="allowDrop(event)" data-number=""></div>
+          <div class="drop-zone" ondragover="allowDrop(event)" data-number=""></div>
+        </div>
+
+        <div class="tiles">
+          <div class="tile" draggable="true" ondragstart="drag(event)" style="transform: rotateZ(-10deg)">0</div>
+          <div class="tile" draggable="true" ondragstart="drag(event)" style="transform: rotateZ(5deg)">1</div>
+          <div class="tile" draggable="true" ondragstart="drag(event)" style="transform: rotateZ(-15deg)">2</div>
+          <div class="tile" draggable="true" ondragstart="drag(event)" style="transform: rotateZ(10deg)">3</div>
+          <div class="tile" draggable="true" ondragstart="drag(event)" style="transform: rotateZ(-5deg)">4</div>
+          <div class="tile" draggable="true" ondragstart="drag(event)" style="transform: rotateZ(15deg)">5</div>
+          <div class="tile" draggable="true" ondragstart="drag(event)" style="transform: rotateZ(-10deg)">6</div>
+          <div class="tile" draggable="true" ondragstart="drag(event)" style="transform: rotateZ(5deg)">7</div>
+          <div class="tile" draggable="true" ondragstart="drag(event)" style="transform: rotateZ(-15deg)">8</div>
+          <div class="tile" draggable="true" ondragstart="drag(event)" style="transform: rotateZ(10deg)">9</div>
+        </div>
+
+        <button class="submit-button" onclick="submitNumbers()">Submit</button>
+
+        <!-- Modal -->
+        <div id="hintModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>Due to the triple zero combination, you've reached the hidden HINT. Would you like to use it?</p>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </li>
+
+  <script src="./js/the-price-of-a-book.js"></script>
+</body>
+
+</html>

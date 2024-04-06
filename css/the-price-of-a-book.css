@@ -1,0 +1,119 @@
+.ai-container {
+  display: flex;
+  justify-content: space-around;
+  width: 250px;
+  /* margin-bottom: 20px; */
+}
+
+.drop-zone {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: transparent;
+  border-bottom: 2px solid #000;
+  font-size: 16px;
+  color: transparent;
+  position: relative;
+}
+
+.drop-zone::before {
+  content: attr(data-number);
+  color: navy;
+  font-size: 24px;
+  position: absolute;
+  bottom: 2px;
+}
+
+.separator {
+  width: 5px;
+  height: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+}
+
+.separator::before {
+  content: ".";
+  font-size: 36px;
+  color: #000;
+  position: absolute;
+  bottom: 0;
+}
+
+.dollar {
+  font-size: 34px;
+  color: navy;
+}
+
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 75%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.tile {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ccc;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  margin: 5px;
+  cursor: pointer;
+  transform-origin: center;
+}
+
+.submit-button {
+  display: none;
+  background-color: green;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* / Modal styles / */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  bottom: 20px;
+  width: 50%;
+  margin-left: 25%;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  border-radius: 5px;
+}
+
+.modal-content {
+  padding: 20px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
