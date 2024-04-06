@@ -5,10 +5,12 @@
 
 .slider-container {
   width: 90%;
-  margin: 50px auto;
+  margin: 0px auto;
   position: relative;
 }
-
+.card__button-group.cows {
+  margin-top: 500px;
+}
 .slider {
   width: 100%;
   height: 20px;

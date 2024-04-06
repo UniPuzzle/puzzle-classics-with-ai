@@ -5,7 +5,7 @@ const notchLabelsContainer = document.querySelector(".notch-labels");
 const submitButton = document.getElementById("submitButton");
 
 const startValue = 280;
-const endValue = 340;
+const endValue = 330;
 const step = 5;
 const totalNotches = (endValue - startValue) / step;
 const notchWidth = slider.offsetWidth / totalNotches;
